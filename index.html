@@ -1,0 +1,157 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content-type="text/html"; charset="utf-8" />
+    <title>Practice01.html</title>
+<style>
+    #videobcg {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        min-width: 100%;
+        min-height: 100%;
+        width: auto;
+        height: auto;
+        z-index: -1000;
+        overflow: hidden;
+    }
+
+    #loginbox {
+        background-color: rgba( 255, 255, 255, 0.8 );
+        height: 50vh;
+        width: 50vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50px 50px 50px 50px;
+    }
+
+
+    @import url(https://fonts.googleapis.com/css?family=BenchNine:700);
+
+    .snip1535 {
+        background-color: #343861;
+        border: none;
+        color: #ffffff;
+        cursor: pointer;
+        display: inline-block;
+        font-family: 'BenchNine', Arial, sans-serif;
+        font-size: 1em;
+        font-size: 22px;
+        line-height: 1em;
+        margin: 15px 40px;
+        outline: none;
+        padding: 12px 40px 10px;
+        position: relative;
+        text-transform: uppercase;
+        font-weight: 700;
+    }
+
+        .snip1535:before,
+        .snip1535:after {
+            border-color: transparent;
+            -webkit-transition: all 0.25s;
+            transition: all 0.25s;
+            border-style: solid;
+            border-width: 0;
+            content: "";
+            height: 24px;
+            position: absolute;
+            width: 24px;
+        }
+
+        .snip1535:before {
+            border-color: #343861;
+            border-right-width: 2px;
+            border-top-width: 2px;
+            right: -5px;
+            top: -5px;
+        }
+
+        .snip1535:after {
+            border-bottom-width: 2px;
+            border-color: #343861;
+            border-left-width: 2px;
+            bottom: -5px;
+            left: -5px;
+        }
+
+        .snip1535:hover,
+        .snip1535.hover {
+            background-color: #343861;
+        }
+
+            .snip1535:hover:before,
+            .snip1535.hover:before,
+            .snip1535:hover:after,
+            .snip1535.hover:after {
+                height: 100%;
+                width: 100%;
+            }
+
+    .wrapper {
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+
+</style>
+
+
+    <script>
+        function createAccountForm() {
+            location.href = "/sign-up";
+
+        };
+
+
+        function notNull() {
+          var id= document.getElementById('id');
+          if(id.value == "" || id.value.trim().length === 0){
+            alert('아이디를 입력하세요');
+            id.value="";
+            id.focus();
+            return false;
+          }
+          return true;
+        };
+
+
+      function chatView() {
+      var trueture= notnull();
+        if(truetrue){
+        location.href = "/chat";
+      }
+      }
+    </script>
+
+</head>
+
+
+<body>
+    <!--
+    <video id="videobcg" preload="auto" autoplay loop="loop">
+        <source src="Videos/New York City (NYC), USA - by drone [4K].mp4" type="video/mp4">
+        <source src="movie.webm" type="video/webm">
+        Sorry, your browser does not support HTML5 video.
+    </video>
+    -->
+  <img id="videobcg" src="/Images" />
+<form action="/chat" method="get" onsubmit="return notNull()">
+    <div class="wrapper">
+        <div id="loginbox" style="vertical-align:middle;position:relative;">
+            <input type="text" name="id" id="name" placeholder="ID" style="position:absolute;margin-top: -80px; font-size:20px;">
+            <input type="password" name="pwd" placeholder="Enter Your Password" style="position:absolute; margin-top:-20px;font-size:20px;">
+            <a href="/sign-up" style="position:absolute; margin-top:30px; margin-left:-75px;">Sign Up</a>
+            <a href="/sign-up" style="position:absolute; margin-top:30px; margin-left:50px;">Forgot Password?</a>
+            <button class="snip1535" style="position:absolute; margin-top: 100px; margin-left:0;" onclick="chatView();">ACCESS</button>
+        </div>
+    </div>
+</form>
+
+</body>
+</html>
