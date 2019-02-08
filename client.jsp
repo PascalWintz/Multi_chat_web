@@ -1,11 +1,13 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
     <title>Chat</title>
     <style>
-      .chat_log{ width: 90%; height: 200px; }
-      .login-info{ width:10%; height:200px;}
+      .chat_log{ width: 95%; height: 200px; }
       .name{ width: 10%; }
       .message{ width: 70%; }
       .chat{ width: 10%; }
@@ -15,9 +17,15 @@
     <div>
       <textarea id="chatLog" class="chat_log" readonly></textarea>
       <textarea id="login-info" class="login-info" readonly></textarea>
+
     </div>
     <form id="chat">
-      <input id="name" class='name' type="text" readonly>
+      <script>
+      //var name=request.getParameter('id');
+
+      console.log(name);
+      </script>
+      <input id="id" class='name' type="text" readonly>
       <input id="message" class="message" type="text">
       <input type="submit" class="chat" value="chat"/>
     </form>
@@ -26,24 +34,6 @@
     <script src="//code.jquery.com/jquery-1.11.1.js"></script>
     <script>
       var socket = io();
-
-      //http://localhost:3000/chat?id=qwe&pwd=
-      var get_Parameter= function(name) {
-        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-     results = regex.exec(location.search);
-     return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-   }
-      var name=get_Parameter('id');
-      document.getElementById('name').value=name;
-      //io.on('connection',(socket,name){
-        //socket.emit('connection',$('#name').val());
-      //});
-      function logininfo(name){
-        socket.emit('login-info',name);
-        socket.emit('disconnect',name);
-      };
-      logininfo(name);
       $('#chat').on('submit', function(e){
         socket.emit('send message', $('#name').val()+": "+$('#message').val());
         $('#message').val("");
@@ -55,19 +45,17 @@
         $('#chatLog').scrollTop($('#chatLog')[0].scrollHeight);
       });
 
-      //io.on('login-info',(name){
-        //socket.emit('login-info',$('#name').val());
-      //}
-
       socket.on('login-info',function(name){
-        $('#login-info').val(name);
-
+        $('#login-info').append(name+'\n');
         $('#login-info').scrollTop($('#login-info')[0].scrollHeight);
-      });
-
+      }
+      //$('%name').on('login-info',function(e){
+        //socket.emit('login-info',$('#name').val());
+      //});
       //socket.on('change name', function(name){
       //  $('#name').val(name);
       //});
+
     </script>
   </body>
 </html>
