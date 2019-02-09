@@ -45,10 +45,6 @@
         $('#chatLog').scrollTop($('#chatLog')[0].scrollHeight);
       });
 
-      socket.on('login-info',function(name){
-        $('#login-info').append(name+'\n');
-        $('#login-info').scrollTop($('#login-info')[0].scrollHeight);
-      }
       //$('%name').on('login-info',function(e){
         //socket.emit('login-info',$('#name').val());
       //});

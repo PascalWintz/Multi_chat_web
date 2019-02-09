@@ -45,7 +45,7 @@
       };
       logininfo(name);
       $('#chat').on('submit', function(e){
-        socket.emit('send message', $('#name').val()+": "+$('#message').val());
+        socket.emit('send message', $('#name').val()+" "+$('#message').val());
         $('#message').val("");
         $("#message").focus();
         e.preventDefault();
