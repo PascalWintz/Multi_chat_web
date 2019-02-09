@@ -3,31 +3,89 @@
   <head>
     <meta charset="utf-8">
     <title>Chat</title>
+    <link rel="stylesheet" href="/css/style.css">
     <style>
-      .chat_log{ width: 90%; height: 200px; }
-      .login-info{ width:10%; height:200px;}
-      .name{ width: 10%; }
-      .message{ width: 70%; }
-      .chat{ width: 10%; }
+    #videobcg {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        min-width: 100%;
+        min-height: 100%;
+        width: auto;
+        height: auto;
+        z-index: -1000;
+        overflow: hidden;
+    }
+      .chat_log{
+        background-color: rgba( 255, 255, 255, 0 );
+        border:none;
+        width: 80%; height: 70%; margin-left:-5%; font-size:20px;font-family: fantasy;}
+      .login-info{
+        background-color: rgba( 255, 255, 255, 0 );
+        border:none;
+        width:10%; height:70%; margin-left:40.5%;font-size:20px;font-family: fantasy;}
+      .name{
+        background-color: rgba( 255, 255, 255, 0 );
+        border:none;
+        width: 10%; height:8%; margin-left:-40%;margin-top:30%;font-size:20px;font-family: fantasy;}
+      .message{
+        background-color: rgba( 255, 255, 255, 0 );
+        border: solid 2px #1E90FF;
+        border-radius: 15px 15px 15px 15px;
+        width: 65%; height:8%; margin-left:-3.2%;margin-top:30%;font-size:20px;font-family: fantasy;}
+      .chat{
+        background-color: #1E90FF;
+        border: none;
+        border-radius:15px 15px 15px 15px;
+        color:#fff;
+        padding: 15px 0;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 15px;
+        margin: 4px;
+        width: 15.5%; height:10%;margin-left:38%;margin-top:30%;}
+      .wrapper{
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .chatbox{
+        background-color: rgba( 255, 255, 255, 0.8 );
+        height: 80vh;
+        width: 80vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50px 50px 50px 50px;
+      }
+      .online{
+        color:green;
+        margin-top:-31.5%;
+        margin-left:38%;
+      }
     </style>
   </head>
   <body>
-    <div>
-      <textarea id="chatLog" class="chat_log" readonly></textarea>
-      <textarea id="login-info" class="login-info" readonly></textarea>
-    </div>
-    <form id="chat">
-      <input id="name" class='name' type="text" readonly>
-      <input id="message" class="message" type="text">
-      <input type="submit" class="chat" value="chat"/>
-    </form>
-    <div id="box" class="box">
+    <img id="videobcg" src="/Images" />
+<div class="wrapper" >
+<form id="chat">
+    <div class="chatbox" style="vertical-align:middle; position:relative;">
+      <h2 class="online" style="position:absolute;">Online</h2>
+      <textarea id="chatLog" class="chat_log" style="position:absolute; "readonly></textarea>
+      <textarea id="login-info" class="login-info" style="position:absolute; " readonly></textarea>
+      <input id="name" class='name' type="text" style="position:absolute;" readonly>
+      <input id="message" class="message" style="position:absolute; " type="text">
+      <input type="submit" class="chat" style="position:absolute; "value="Enter"/>
+  </div>
+  </form>
+  </div>
     <script src="/socket.io/socket.io.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.js"></script>
     <script>
       var socket = io();
-
-      //http://localhost:3000/chat?id=qwe&pwd=
       var get_Parameter= function(name) {
         name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
         var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
@@ -36,9 +94,6 @@
    }
       var name=get_Parameter('id');
       document.getElementById('name').value=name;
-      //io.on('connection',(socket,name){
-        //socket.emit('connection',$('#name').val());
-      //});
       function logininfo(name){
         socket.emit('login-info',name);
         socket.emit('disconnect',name);
@@ -54,20 +109,11 @@
         $('#chatLog').append(msg+'\n');
         $('#chatLog').scrollTop($('#chatLog')[0].scrollHeight);
       });
-
-      //io.on('login-info',(name){
-        //socket.emit('login-info',$('#name').val());
-      //}
-
       socket.on('login-info',function(name){
         $('#login-info').val(name);
 
         $('#login-info').scrollTop($('#login-info')[0].scrollHeight);
       });
-
-      //socket.on('change name', function(name){
-      //  $('#name').val(name);
-      //});
     </script>
   </body>
 </html>

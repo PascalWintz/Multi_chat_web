@@ -2,9 +2,9 @@
 <html>
 <head>
     <meta content-type="text/html"; charset="utf-8" />
-    <title>Practice01.html</title>
+    <title>Welcome!</title>
 <style>
-    #videobcg {
+#videobcg {
         position: absolute;
         top: 0px;
         left: 0px;
@@ -98,7 +98,6 @@
     }
 
 
-
 </style>
 
 
@@ -111,10 +110,17 @@
 
         function notNull() {
           var id= document.getElementById('id');
+          var pwd= document.getElementById('pwd');
           if(id.value == "" || id.value.trim().length === 0){
-            alert('아이디를 입력하세요');
+            alert('아이디를 입력해주세요');
             id.value="";
             id.focus();
+            return false;
+          }
+          if(pwd.value == "" || pwd.value.trim().length === 0){
+            alert('비밀번호를 입력해주세요');
+            pwd.value="";
+            pwd.focus();
             return false;
           }
           return true;
@@ -127,6 +133,10 @@
 
         location.href = "/chat";
       }
+      }
+
+      function forgotPass() {
+        alert('아직 준비중입니다');
       }
     </script>
 
@@ -146,10 +156,10 @@
     <div class="wrapper">
         <div id="loginbox" style="vertical-align:middle;position:relative;">
             <input type="text" name="id" id="id" placeholder="ID" style="position:absolute;margin-top: -80px; font-size:20px;">
-            <input type="password" name="pwd" placeholder="Enter Your Password" style="position:absolute; margin-top:-20px;font-size:20px;">
-            <a href="/sign-up" style="position:absolute; margin-top:30px; margin-left:-75px;">Sign Up</a>
-            <a href="/sign-up" style="position:absolute; margin-top:30px; margin-left:50px;">Forgot Password?</a>
-            <button class="snip1535" style="position:absolute; margin-top: 100px; margin-left:0;" onclick="chatView();">ACCESS</button>
+            <input type="password" name="pwd" id="pwd" placeholder="Password" style="position:absolute; margin-top:-20px;font-size:20px;">
+            <a href="/sign-up" name="signup"style="position:absolute; margin-top:30px; margin-left:-75px;">Sign Up</a>
+            <a href="/" name="fotgotpass" style="position:absolute; margin-top:30px; margin-left:50px;"onclick="forgotPass();">Forgot Password?</a>
+            <button name="access" class="snip1535" style="position:absolute; margin-top: 100px; margin-left:0;" onclick="chatView();">ACCESS</button>
         </div>
     </div>
 </form>
