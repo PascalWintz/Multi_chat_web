@@ -81,7 +81,7 @@ io.on('connection', function(socket){
     else {
       msg=msg.split(' ');
       msg[0]+=': ';
-      msg=msg.join('');
+      msg=msg.join(' ');
       console.log(msg);
       io.emit('receive message', msg);}
   });

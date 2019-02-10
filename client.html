@@ -96,7 +96,7 @@
       document.getElementById('name').value=name;
       function logininfo(name){
         socket.emit('login-info',name);
-        socket.emit('disconnect',name);
+        /*socket.emit('disconnect',name);*/
       };
       logininfo(name);
       $('#chat').on('submit', function(e){
